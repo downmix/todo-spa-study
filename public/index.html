@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <div id="wrap">
+    <h1>Todos</h1>
+    <form id="todo-form" autocomplete="off">
+      <input type="text" name="title">
+      <input type="submit" value="전송">
+    </form>
+    <div id="todos">loading...</div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js"></script>
+  <script src="/vendor/ejs.min.js"></script>
+  <script src="/common.js"></script>
+  <script src="/index.js"></script>
+</body>
+</html>

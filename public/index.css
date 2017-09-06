@@ -1,0 +1,32 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+#wrap {
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px auto;
+  width: 400px;
+  background-color: #f5f5f5;
+}
+
+.todo-item {
+  padding: 5px 0;
+}
+
+.todo-checkbox {
+  cursor: pointer;
+}
+
+.todo-remove {
+  display: none;
+  cursor: pointer;
+  float: right;
+  color: grey;
+}
+
+.todo-item:hover .todo-remove {
+  display: inline;
+}
