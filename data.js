@@ -18,12 +18,13 @@ const todos = [
 
 /*------------------------------------*/
 /* [ todos추가 ] */
-function addTodo({title, label}) {
+function addTodo({title, label, time}) {
   const newTodo = {
     id: todoSeq++,
     title,
     complete: false,
-    label
+    label,
+    time
   }
   todos.push(newTodo)
   return newTodo
