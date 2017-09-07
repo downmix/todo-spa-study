@@ -10,10 +10,14 @@
 </head>
 <body>
   <div id="wrap">
-    <h1>Todos</h1>
+    <h1><b>TODO</b><br>LIST</h1>
     <form id="todo-form" autocomplete="off">
-      <input type="text" name="title">
-      <input type="submit" value="전송">
+      <input type="text" name="title" placeholder="What's your plan?">
+      <input type="checkbox" name="label" id="todo-label-private" value="개인"><label for="todo-label-private">개인</label>
+      <input type="checkbox" name="label" id="todo-label-work" value="회사"><label for="todo-label-work">회사</label>
+      <input type="checkbox" name="label" id="todo-label-fastcampus" value="패스트캠퍼스"><label for="todo-label-fastcampus">패스트캠퍼스</label>
+      <input type="checkbox" name="label" id="todo-label-friend" value="친구"><label for="todo-label-friend">친구</label>
+      <input type="submit" value="New to-do">
     </form>
     <div id="todos">loading...</div>
   </div>
