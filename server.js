@@ -19,7 +19,7 @@ const authMiddleware = expressJwt({secret: SECRET}) //인증 미들웨어
 
 const users = [
   {
-    id: 'asdf',
+    id: 'user',
     name: '사용자1',
     password: '1234',
   },
@@ -27,6 +27,11 @@ const users = [
     id: 'foo',
     name: '사용자2',
     password: 'bar'
+  },
+  {
+    id: 'jm322',
+    name: '임옥택',
+    password: '1q2w3e'
   }
 ]
 
@@ -111,7 +116,6 @@ app.post('/api/login', jsonMiddleware, (req, res) => {
 /*------------------------------------*/
 /* [ 로그인 검증 ] */
 app.get('/api/auth', jsonMiddleware, authMiddleware, (req, res) => {
-  console.log(req.user, '<< [ req.user ]');
   res.send(req.user)
 })
 

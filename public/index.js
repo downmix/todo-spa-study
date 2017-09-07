@@ -1,7 +1,3 @@
-
-let userId = '';
-let userName = '';
-
 (function (window, document) {
   /**
    * 서버에서 할일 템플릿과 할일 데이터를 가져온 후, #todos 요소 안에 렌더링하는 함수
@@ -25,12 +21,10 @@ let userName = '';
           }).then(res => {
             loadTodos()
           }).catch(err => {
+            e.srcElement.checked = !e.srcElement.checked //체크취소
             if(err.response.status === 401){
-              console.log(err.response, '<< [ err.response ]');
               statusInfo('할일체크 하기 위해서는 로그인이 필요합니다');
-              
             }
-            //console.log(err.response.status, '<< [ err ]');
           })
         })
 
@@ -40,6 +34,9 @@ let userName = '';
         removeLink.addEventListener('click', e => {
           authedAxios.delete(`/api/todos/${id}`).then(res => {
             loadTodos()
+          }).catch(err => {
+            if(err.response.status === 401)
+              statusInfo('삭제 하기 위해서는 로그인이 필요합니다');
           })
         })
       })
@@ -78,7 +75,11 @@ let userName = '';
     })
       .then(loadTodos)
       .then(() => {
-        //form.elements.title.value = null
+        form.elements.title.value = null
+      })
+      .catch(err => {
+        if(err.response.status === 401)
+          statusInfo('등록 하기 위해서는 로그인이 필요합니다');
       })
   })
 
@@ -99,6 +100,10 @@ let userName = '';
         sessionStorage.setItem('my-todo-app', JSON.stringify(user))
         loginArea()
       })
+      .catch(err => {
+        if(err.response.status === 400)
+          statusInfo('로그인 실패!');
+      })
   })
 
   loadTodos()
@@ -106,6 +111,8 @@ let userName = '';
 
 })(window, document)
 
+/*------------------------------------*/
+/* [ JWT 인증 클라이언트 선언  ] */
 let user;
 let authedAxios = axios.create({
   headers: {
@@ -113,14 +120,17 @@ let authedAxios = axios.create({
   }
 })
 
+/*------------------------------------*/
+/* [ logout >> 새로고침 ] */
 const logoutBtn = () => {
   sessionStorage.removeItem('my-todo-app-token')
   sessionStorage.removeItem('my-todo-app')
   location.href = '/'
 }
 
+/*------------------------------------*/
+/* [ 에러 안내 처리 ] */
 const statusInfo = msg => {
-  //document.querySelector('#status-info').textContent = msg
   const infoEl = document.createElement('h3')
   infoEl.textContent = msg
   document.querySelector('#status-info').appendChild(infoEl);
