@@ -42,13 +42,26 @@
     //e.stopPropagation()
     //이벤트 버블링 중단
     const form = e.currentTarget
+
+    //라벨 기능 추가
+    const labelArray = form.elements.label
+    const checkedLabelArray = []
+    
+    for(let i = 0; i < labelArray.length; i++) {
+      if(labelArray[i].checked) checkedLabelArray.push(labelArray[i].value)
+    }
+    
     axios.post('/api/todos', {
-      title: form.elements.title.value
+      title: form.elements.title.value,
+      label: checkedLabelArray
     })
       .then(loadTodos)
       .then(() => {
         form.elements.title.value = null
-      })
+        for(let i = 0; i < labelArray.length; i++) {
+          labelArray[i].checked = false
+        }
+    })
   })
 
   loadTodos()

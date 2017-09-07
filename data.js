@@ -5,22 +5,25 @@ const todos = [
   {
     id: todoSeq++,
     title: "sample todo",
-    complete: false
+    complete: false,
+    label: "회사"
   },
   {
     id: todoSeq++,
     title: "completed todo",
-    complete: true
+    complete: true,
+    label: "회사"
   }
 ]
 
 /*------------------------------------*/
 /* [ todos추가 ] */
-function addTodo({title}) {
+function addTodo({title, label}) {
   const newTodo = {
     id: todoSeq++,
     title,
-    complete: false
+    complete: false,
+    label
   }
   todos.push(newTodo)
   return newTodo

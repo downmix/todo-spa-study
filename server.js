@@ -21,9 +21,9 @@ app.get('/api/todos', (req, res) => {
 /*------------------------------------*/
 /* [ todo 신규추가 ] */
 app.post('/api/todos', jsonMiddleware, (req, res) => {
-  const {title} = req.body
+  const {title, label} = req.body
   if (title) {
-    const todo = data.addTodo({title})
+    const todo = data.addTodo({title, label})
     res.send(todo)
   } else {
     res.status(400)
