@@ -121,6 +121,52 @@
       })
   })
 
+  // 전체보기/완료된 항목만 보기 이벤트 핸들러
+  const viewChange = document.getElementById('viewChange')
+
+  viewChange.addEventListener('change', e => {
+
+    if(viewChange.checked === true){
+      render({
+        target: '#todos',
+        templatePath: '/templates/todos.ejs',
+        dataPath: '/api/todos/completed'
+      }).then(todosEl => {
+        todosEl.querySelectorAll('.todo-item').forEach(todoItem => {
+          const id = todoItem.dataset.id
+  
+          // 체크박스 클릭시
+          // 낙관적 업데이트
+          const checkboxEl = todoItem.querySelector('.todo-checkbox')
+          checkboxEl.addEventListener('click', e => {
+            authedAxios.patch(`/api/todos/${id}`, {
+              complete: e.currentTarget.checked
+            }).catch(err => {
+              e.srcElement.checked = !e.srcElement.checked //체크취소
+              if(err.response.status === 401){
+                statusInfo('할일체크 하기 위해서는 로그인이 필요합니다');
+              }
+            })
+          })
+  
+          // 삭제 아이콘 클릭시
+          // 비관적 업데이트
+          const removeLink = todoItem.querySelector('.todo-remove')
+          removeLink.addEventListener('click', e => {
+            authedAxios.delete(`/api/todos/${id}`).then(res => {
+              loadTodos()
+            }).catch(err => {
+              if(err.response.status === 401)
+                statusInfo('삭제 하기 위해서는 로그인이 필요합니다');
+            })
+          })
+        })
+      })
+    } else {
+      loadTodos()
+    }
+  })
+
   loadTodos()
   loginArea()
 

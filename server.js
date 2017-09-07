@@ -24,9 +24,9 @@ const users = [
     password: '1234',
   },
   {
-    id: 'foo',
-    name: '사용자2',
-    password: 'bar'
+    id: 'vezzita',
+    name: '김민영',
+    password: '1234'
   },
   {
     id: 'jm322',
@@ -56,6 +56,15 @@ app.post('/api/todos', jsonMiddleware, authMiddleware, (req, res) => {
     res.status(400)
     res.end()
   }
+})
+
+/*------------------------------------*/
+/* [ 전체/완료 항목 보기 전환 ] */
+app.get('/api/todos/completed', (req, res) => {
+  // console.log(data.todoList())
+  const completed = data.todoList().filter(item => item.complete === true)
+  // console.log(completed)
+  res.send(completed)
 })
 
 /*------------------------------------*/

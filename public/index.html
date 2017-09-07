@@ -6,20 +6,23 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-  <link rel="stylesheet" href="/index.css">
+  <!-- <link rel="stylesheet" href="/index.css"> -->
 </head>
 <body>
   <div id="wrap">
-    <h1><b>TODO</b><br>LIST</h1>
-    <form id="todo-form" autocomplete="off">
-      <input type="text" name="title" placeholder="What's your plan?">
-      <input type="checkbox" name="label" id="todo-label-private" value="개인"><label for="todo-label-private">개인</label>
-      <input type="checkbox" name="label" id="todo-label-work" value="회사"><label for="todo-label-work">회사</label>
-      <input type="checkbox" name="label" id="todo-label-fastcampus" value="패스트캠퍼스"><label for="todo-label-fastcampus">패스트캠퍼스</label>
-      <input type="checkbox" name="label" id="todo-label-friend" value="친구"><label for="todo-label-friend">친구</label>
-      <input type="submit" value="New to-do">
-    </form>
-    <div id="todos">loading...</div>
+    <h1><b>TODO</b> LIST</h1>
+    <div class="main">
+      <form id="todo-form" autocomplete="off">
+        <input type="text" name="title" placeholder="What's your plan?">
+        <input type="checkbox" name="label" id="todo-label-private" value="study"><label for="todo-label-private">study</label>
+        <input type="checkbox" name="label" id="todo-label-work" value="company"><label for="todo-label-work">company</label>
+        <input type="checkbox" name="label" id="todo-label-fastcampus" value="fastcampus"><label for="todo-label-fastcampus">fastcampus</label>
+        <input type="checkbox" name="label" id="todo-label-friend" value="with friend"><label for="todo-label-friend">with friend</label>
+        <input type="submit" value="New to-do">
+      </form>
+      <input type="checkbox" value="완료된 항목보기" id="viewChange"><label for="viewChange">보기</label>
+      <div id="todos">loading...</div>
+    </div>
     <div id="status-info"></div>
     <div id="login">
       <form id="login-form" autocomplete="off">
@@ -28,6 +31,7 @@
         <input type="submit" value="로그인">
       </form>
     </div>
+    <div class="copyright">&copy; MINYOUNG / OKTEAK.</div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js"></script>
   <script src="/vendor/ejs.min.js"></script>
