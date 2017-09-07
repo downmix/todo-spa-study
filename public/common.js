@@ -5,7 +5,7 @@ function render({ target, templatePath, dataPath, queryFrom = document }) {
   // 데이터 가져오기
   const dataPromise = axios.get(dataPath, { 
     headers: {
-      'Authorization': `Bearer ${sessionStorage.getItem('my-todo-app-token')}`
+      'Authorization': `Bearer ${localStorage.getItem('my-todo-app-token')}`
     }
   })
 

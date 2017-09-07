@@ -44,7 +44,7 @@
   }
 
   function loginArea() {
-    if(sessionStorage.getItem('my-todo-app-token')){
+    if(localStorage.getItem('my-todo-app-token')){
       render({
         target: '#login',
         templatePath: '/templates/login-ok.ejs',
@@ -53,11 +53,11 @@
       .then((templat) => {
         authedAxios = axios.create({
           headers: {
-            'Authorization': `Bearer ${sessionStorage.getItem('my-todo-app-token')}`
+            'Authorization': `Bearer ${localStorage.getItem('my-todo-app-token')}`
           }
         })
   
-        user = JSON.parse(sessionStorage.getItem('my-todo-app'))
+        user = JSON.parse(localStorage.getItem('my-todo-app'))
         templat.querySelector("span#loginOkId").textContent = user.id
         templat.querySelector("span#loginOkName").textContent = user.name
       })
@@ -96,8 +96,8 @@
           name: res.data.name
         }
 
-        sessionStorage.setItem('my-todo-app-token', res.data.token)
-        sessionStorage.setItem('my-todo-app', JSON.stringify(user))
+        localStorage.setItem('my-todo-app-token', res.data.token)
+        localStorage.setItem('my-todo-app', JSON.stringify(user))
         loginArea()
       })
       .catch(err => {
@@ -116,15 +116,15 @@
 let user;
 let authedAxios = axios.create({
   headers: {
-    'Authorization': `Bearer ${sessionStorage.getItem('my-todo-app-token')}`
+    'Authorization': `Bearer ${localStorage.getItem('my-todo-app-token')}`
   }
 })
 
 /*------------------------------------*/
 /* [ logout >> 새로고침 ] */
 const logoutBtn = () => {
-  sessionStorage.removeItem('my-todo-app-token')
-  sessionStorage.removeItem('my-todo-app')
+  localStorage.removeItem('my-todo-app-token')
+  localStorage.removeItem('my-todo-app')
   location.href = '/'
 }
 
