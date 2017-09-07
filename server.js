@@ -41,7 +41,7 @@ app.use(express.static('public'))
 /*------------------------------------*/
 /* [ todo 리스트 전달 ] */
 app.get('/api/todos', (req, res) => {
-  res.send(data.todos)
+  res.send(data.todoList())
 })
 
 /*------------------------------------*/
@@ -69,6 +69,7 @@ app.patch('/api/todos/:id', jsonMiddleware, authMiddleware, (req, res) => {
     res.end()
     return // 바로 라우트 핸들러를 종료합니다.
   }
+  console.log(req.body, '<< [ req.body ]');
   const todo = data.updateTodo(id, req.body)
   res.send(todo)
 })
