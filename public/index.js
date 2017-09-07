@@ -1,5 +1,5 @@
 (function (window, document) {
-
+  
   /**
    * 서버에서 할일 템플릿과 할일 데이터를 가져온 후, #todos 요소 안에 렌더링하는 함수
    */
@@ -35,20 +35,35 @@
       })
     })
   }
-
+  
   document.querySelector('#todo-form').addEventListener('submit', e => {
     e.preventDefault()
     //form submit 기본동작을 취소 (페이지 이동)
     //e.stopPropagation()
     //이벤트 버블링 중단
     const form = e.currentTarget
+    const labelArray = form.elements.label
+    const checkedLabelArray = []
+
+    let d = new Date()
+    let time = d.toString().slice(16,21) + ' ' + d.toString().slice(0,15)
+    
+    for(let i = 0; i < labelArray.length; i++) {
+      if(labelArray[i].checked) checkedLabelArray.push(labelArray[i].value)
+    }
+    
     axios.post('/api/todos', {
-      title: form.elements.title.value
+      title: form.elements.title.value,
+      label: checkedLabelArray,
+      time
     })
       .then(loadTodos)
       .then(() => {
         form.elements.title.value = null
-      })
+        for(let i = 0; i < labelArray.length; i++) {
+          labelArray[i].checked = false
+        }
+    })
   })
 
   loadTodos()
