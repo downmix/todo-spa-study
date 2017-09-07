@@ -4,6 +4,10 @@
 *, *::before, *::after {
   box-sizing: border-box;
 }
+html, body {
+  width: 100%;
+  height: 100%;
+}
 html, body, h1, h2, h3, h4, h5, h6, p {
   margin: 0;
   padding: 0;
@@ -11,28 +15,35 @@ html, body, h1, h2, h3, h4, h5, h6, p {
 /* Common CSS */
 body {
   font-family: 'Lato', sans-serif;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 300;
-  letter-spacing: 0.08rem;
-  color: #fff;
-  background: #02AAB0;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #00CDAC, #02AAB0);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #00CDAC, #02AAB0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
+  letter-spacing: 0.06rem;
+  background-color: #fff;
+  color: #151515;
 }
 #wrap {
-  width: 45rem;  /* 1rem = 16px, 45rem = 720px */
+  width: 60rem;
+  height: 100%;
   border-radius: 0.5rem;  /* 0.5rem = 8px */
-  margin: 2rem auto;
+  padding: 2rem;
+  margin: 1rem auto;
   position: relative;
 }
 h1 {
   font-weight: 300;
-  font-size: 1.5rem;
-
+  font-size: 1.4rem;
+  padding-bottom: 1.2rem;
 }
-h1 img {
-  height: 2rem;
-  margin-right: 1rem;
+h2 {
+  font-weight: 500;
+  font-size: 0.7rem;
+  padding-bottom: 0.5rem;
+}
+h3 {
+  color: #f86b56;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-align: right;
 }
 /* #todo-form */
 #todo-form {
@@ -41,53 +52,119 @@ h1 img {
   padding-bottom: 1rem;
   overflow: hidden;
   border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+  position: relative;
 }
 #todo-form input {
-  padding: 1.5rem;
-  font-size: 1rem;
-  border-radius: 0.4rem;
+  padding: 1.5rem 1.5rem 1.5rem 0;
+  font-size: 1.2rem;
   border: 0;
   font-weight: 300;
 }
 #todo-form [name="title"] {
   width: 100%;
-  margin-right: 1rem;
   float: left;
-  color: #999;
-  text-align: center;
+  color: #151515;
+  border-bottom: 5px solid #151515;
+  margin-bottom: 1rem;
+  background-color: transparent;
 }
 #todo-form [name="title"]::placeholder {
-  color: #ccc;
+  color: #f86b56;
   font-weight: 100;
-  font-size: 1rem;
+  font-size: 1.2rem;
+}
+.labeltitle {
+  display: inline-block;
+  line-height: 1.7rem;
+  margin-right: 0.5rem;
+}
+#todo-form [type="checkbox"] {
+  display: none;
+}
+#todo-form input[type="checkbox"] ~ label {
+  margin-right: 0.2rem;
+  background-color: #f86b56;
+  padding: 0.4rem 1rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #fff;
 }
 #todo-form [type="submit"] {
-  padding: 1rem;
-  background-color: red;
+  padding: 1rem 1.5rem;
+  background-color: #f86b56;
   color: #fff;
   position: absolute;
-  top: 0;
+  top: 0.6rem;
   right: 0;
 }
+#viewChange {
+  display: none;
+}
+#login {
+  position: absolute;
+  top: 2.5rem;
+  right: 2rem;
+  
+}
+#login-form [type="text"], #login-form [type="password"] {
+  padding: 0.9rem;
+  border: 0;
+  border-bottom: 2px solid #151515;
+}
+#login-form [type="text"]::placeholder, #login-form [type="password"]::placeholder {
+  color: #151515;
+}
+#login-form [type="password"] {
+  margin-left: 0.6rem;
+}
+#login-form [type="submit"] {
+  padding: 1rem 1.5rem;
+  background-color: #f86b56;
+  color: #fff;
+  border: 0;
+  margin-left: 0.5rem;
+}
 .todo-item {
-  padding: 2.5rem 1.5rem;
+  /* width: 20rem; */
+  padding: 1rem 1.5rem;
   margin: 1rem 0;
-  border-radius: 0.5rem;
   background-color: #fff;
-  color: #666;
+  color: #151515;
+  font-size: 1.5rem;
+  font-weight: 300;
+  border: 1px solid #151515;
+  border-left: 10px solid #151515;
+
 }
 .todo-checkbox {
   cursor: pointer;
-}
-.todo-checkbox::before {
-
 }
 .todo-remove {
   display: none;
   cursor: pointer;
   float: right;
-  color: grey;
+  color: #f86b56;
 }
 .todo-item:hover .todo-remove {
   display: inline;
 } 
+.time {
+  font-size: 0.7rem;
+  color: #999;
+  margin-left: 2rem;
+}
+.label {
+  font-size: 0.7rem;
+  background-color: #f86b56;
+  color: #fff;
+  padding: 0.4rem;
+}
+.nolabel {
+  background-color: transparent;
+}
+#status-info {
+  position: absolute;
+  top: 3.5rem;
+  right: 0rem;
+  width: 100%;
+}

@@ -7,9 +7,14 @@
       <% } else { %>
         <%= todo.title %>
       <% } %>
-      <span><%= todo.label %></span>
-      <span><%= todo.time %></span>
+      <% if (todo.label) { %>
+        <span class="label"><%= todo.label %></span>
+      <% } else { %>
+        <span class="nolabel"></span>
+      <% } %>
+      <span class="time"><%= todo.time %></span>
       <i class="todo-remove fa fa-remove"></i>
     </div>
   <% }) %>  
+  
 </div>
